@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/default.css}" />
+<title>JOB STATUS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+form.register {
+	width: 699px;
+	margin: 20px auto 0px auto;
+	height: 316px;
+	background-color: #f9efef;
+	padding: 5px;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+}
+</style>
+</head>
+<body>
+	<h2 style="color: navy; font-weight: bold; text-align: center;">Update
+		Your Post</h2>
+	<form method="post" th:action="@{/admin/updatePost}" class="register">
+		<fieldset class="row1">
+			<legend>
+				<b>Project Details</b>
+			</legend>
+			<p>
+				<label>Project Name : </label> <input type="text" name="projectName"
+					th:value="${job.projectName}" /> <label>Client : </label> <input
+					type="text" name="client" th:value="${job.client}" />
+			</p>
+			<p>
+				<label>Project IG : </label> <input type="text" name="projectIG"
+					th:value="${job.projectIG}" /> <label>Team Size : </label> <input
+					type="text" name="teamSize" th:value="${job.teamSize}" />
+			</p>
+			<p>
+				<label>Description : </label> <input type="text" name="description"
+					style="font-size: 16pt; height: 60px; width: 433px"
+					th:value="${job.description}" />
+			</p>
+
+			<br></br>
+		</fieldset>
+		<fieldset class="row2">
+			<legend>
+				<b>Job Details</b>
+			</legend>
+			<p>
+				<label>Job ID : </label> <input type="text" name="jobID"
+					th:value="${job.jobID}" readonly="readonly" /> <label>Technology
+					: </label> <input type="text" name="technology"
+					th:value="${job.technology}" />
+			</p>
+			<p>
+				<label>Company : </label> <input type="text" name="company"
+					th:value="${job.company}" /> <label>Location : </label> <input
+					type="text" name="location" th:value="${job.location}" />
+			</p>
+			<p>
+				<label>Designation : </label><select name="designation"
+					style="font-size: 10pt; height: 25px; width: 142px"
+					th:value="${job.designation}">
+					<option value="Select">select</option>
+					<option value="ASE">ASE</option>
+					<option value="SE">SE</option>
+					<option value="SSE">SSE</option>
+					<option value="TL">TL</option>
+					<option value="AM">AM</option>
+					<option value="PM">PM</option>
+					<option value="DUL">DUL</option>
+				</select>
+			</p>
+		</fieldset>
+		<center>
+		<button class="button1">UPDATE &raquo;</button>
+		<button class="button2">CANCEL &raquo;</button>
+		</center>
+	</form>
+
+</body>
+</html>

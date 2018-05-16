@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Error Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" th:href="@{/css/error.css}" />
+<style type="text/css">
+</style>
+
+</head>
+<body>
+	<div align="center" id="popUp">
+		<div align="center">
+			<div class="modal-content" style="width: 100%;">
+				<div class="modal-header">
+					<h4 class="modal-title">
+						<strong style="color: red; font-weight: bold;">Error
+							Message!!</strong>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-danger">
+						<strong>Danger!</strong>
+						<p th:text="${errorMessage}"></p>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="#" class="btn btn-primary" onclick="history.go(-1)">Reload</a>
+					<a th:href="@{/}" class="btn btn-danger">Sign-Out</a>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+	<!-- /.modal -->
+</body>
+</html>

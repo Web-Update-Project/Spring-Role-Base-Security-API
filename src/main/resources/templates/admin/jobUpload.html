@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/default.css}" />
+<title>JOB STATUS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+	<h2 style="color: navy; font-weight: bold; text-align: center;">Update
+		Current Opportunity</h2>
+	<form method="post" th:action="@{/admin/postJob}" class="register">
+		<fieldset class="row1">
+			<legend>
+				<b>Project Details</b>
+			</legend>
+			<p>
+				<label>Project Name : </label> <input type="text" name="projectName" />
+				<label>Client : </label> <input type="text" name="client" />
+			</p>
+			<p>
+				<label>Project IG : </label> <input type="text" name="projectIG" />
+				<label>Team Size : </label> <input type="text" name="teamSize" />
+			</p>
+			<p>
+				<label>Description : </label> <input type="text" name="description"
+					style="font-size: 16pt; height: 60px; width: 433px" />
+			</p>
+
+			<br></br>
+		</fieldset>
+		<fieldset class="row2">
+			<legend>
+				<b>Job Details</b>
+			</legend>
+			<p>
+				<label>Job ID : </label> <input type="text" name="jobID"
+					th:value="${jobID}" readonly="readonly" />
+			</p>
+			<p>
+				<label>Technology : </label> <input type="text" name="technology" />
+			</p>
+			<p>
+				<label>Company : </label> <input type="text" name="company" />
+			</p>
+			<p>
+				<label>Location : </label> <input type="text" name="location" />
+			</p>
+			<p>
+				<label>Designation : </label><select name="designation"
+					style="font-size: 10pt; height: 25px; width: 142px">
+					<option value="Select">select</option>
+					<option value="ASE">ASE</option>
+					<option value="SE">SE</option>
+					<option value="SSE">SSE</option>
+					<option value="TL">TL</option>
+					<option value="AM">AM</option>
+					<option value="PM">PM</option>
+					<option value="DUL">DUL</option>
+				</select>
+			</p>
+		</fieldset>
+
+		<fieldset class="row3">
+			<legend>
+				<b>POC Details</b>
+			</legend>
+			<p>
+				<label>Name : </label> <input type="text" name="name"
+					th:value="${user.name}+' '+${user.lastName}" readonly="readonly"
+					style="font-size: 10pt; height: 25px; width: 180px; text-align: center;" />
+			</p>
+			<p>
+				<label>Email : </label> <input type="text" name="email"
+					th:value="${user.email}" readonly="readonly"
+					style="font-size: 10pt; height: 25px; width: 180px; text-align: center;" />
+			</p>
+			<p>
+				<label>Contact No : </label> <input type="text" name="mobile"
+					th:value="${user.mobile}" readonly="readonly"
+					style="font-size: 10pt; height: 25px; width: 180px; text-align: center;" />
+			</p>
+		</fieldset>
+		<fieldset class="row4">
+			<legend>
+				<b>Terms and Mailing </b>
+			</legend>
+			<p class="agreement">
+				All above Details which i going to submit is true <input
+					type="checkbox" value="" required="" /> <label>* I accept
+					the <a href="#">Terms and Conditions</a>
+				</label>
+			</p>
+		</fieldset>
+		<div align="center">
+			<button class="button1">Save &raquo;</button>
+			<button class="button2">Discard &raquo;</button>
+		</div>
+	</form>
+
+</body>
+</html>

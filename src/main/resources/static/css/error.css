@@ -1,0 +1,15 @@
+body {
+	width: 40%;
+	background: url("../images/errorBg.jpg");
+	background-size: cover;
+}
+
+#popUp {
+	position: absolute;
+	width: 427px;
+	height: 200px;
+	z-index: 15;
+	top: 30%;
+	left: 47%;
+	margin: -100px 0 0 -150px;
+}

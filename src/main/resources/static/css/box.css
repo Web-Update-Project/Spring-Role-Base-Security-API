@@ -1,0 +1,105 @@
+input.MyButton {
+	width: 253px;
+	padding: 21px;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 156%;
+	background: #18a216;
+	color: #fff;
+	border: 1px solid #eceff5;
+	border-radius: 50px;
+	-moz-box-shadow: : 6px 6px 5px #999;
+	-webkit-box-shadow: : 6px 6px 5px #999;
+	box-shadow: : 6px 6px 5px #999;
+	padding: 15px;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 156%;
+	background: #18a216;
+	color: #fff;
+	border: 1px solid #3366cc;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 156%;
+	background: #18a216;
+	color: #fff;
+	border: 1px solid #3366cc;
+	font-weight: bold;
+	font-size: 156%;
+	background: #18a216;
+	color: #fff;
+	border: 1px solid #3366cc;
+	font-size: 112%;
+	background: #18a216;
+	color: #fff;
+	border: 1px solid #3366cc;
+	background: #0c8e16;
+	color: #fff;
+	border: 1px solid #3366cc;
+	color: #fff;
+	border: 1px solid #3366cc;
+	border: 1px solid #dfe2e8;
+}
+
+.linkButton {
+	width: 253px;
+	padding: 21px;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 156%;
+	background: #18a216;
+	color: #fff;
+	border: 1px solid #eceff5;
+	border-radius: 50px;
+	-moz-box-shadow: : 6px 6px 5px #999;
+	-webkit-box-shadow: : 6px 6px 5px #999;
+	box-shadow: : 6px 6px 5px #999;
+	padding: 15px;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 156%;
+	background: #18a216;
+	color: #fff;
+	border: 1px solid #3366cc;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 156%;
+	background: #18a216;
+	color: #fff;
+	border: 1px solid #3366cc;
+	font-weight: bold;
+	font-size: 156%;
+	background: #18a216;
+	color: #fff;
+	border: 1px solid #3366cc;
+	font-size: 112%;
+	background: #18a216;
+	color: #fff;
+	border: 1px solid #3366cc;
+	background: #0c8e16;
+	color: #fff;
+	border: 1px solid #3366cc;
+	color: #fff;
+	border: 1px solid #3366cc;
+	border: 1px solid #dfe2e8;
+	text-decoration: none;
+}
+
+.linkButton:hover {
+	color: #ffff00;
+	background: #000;
+	border: 1px solid #fff;
+	-moz-box-shadow: : 5px 5px 4px #adadad;
+	-webkit-box-shadow: : 5px 5px 4px #adadad;
+	box-shadow: : 5px 5px 4px #adadad;
+	text-decoration: none;
+}
+
+input.MyButton:hover {
+	color: #ffff00;
+	background: #000;
+	border: 1px solid #fff;
+	-moz-box-shadow: : 5px 5px 4px #adadad;
+	-webkit-box-shadow: : 5px 5px 4px #adadad;
+	box-shadow: : 5px 5px 4px #adadad;
+}

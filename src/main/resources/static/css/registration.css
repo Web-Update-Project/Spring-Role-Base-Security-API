@@ -1,0 +1,11 @@
+.validation-message {
+	font-style: normal;
+	font-size: 12px;
+	color: #FF1C19;
+}
+
+.btn-warning {
+	color: #fff;
+	background-color: #0d0e0e;
+	border-color: #478a8a;
+}

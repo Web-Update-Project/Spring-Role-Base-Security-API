@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Admin Home Page</title>
+
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"
+	rel='stylesheet' type='text/css'>
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+<style type="text/css">
+.panel-table .panel-body {
+	padding: 0;
+}
+
+.table-responsive {
+	height: 200px;
+}
+
+.panel-table .panel-body .table-bordered {
+	border-style: none;
+	margin: 0;
+}
+
+.panel-table .panel-body .table-bordered>thead>tr>th:first-of-type {
+	text-align: center;
+	width: 100px;
+}
+
+.panel-table .panel-body .table-bordered>thead>tr>th:last-of-type,
+	.panel-table .panel-body .table-bordered>tbody>tr>td:last-of-type {
+	border-right: 0px;
+}
+
+.panel-table .panel-body .table-bordered>thead>tr>th:first-of-type,
+	.panel-table .panel-body .table-bordered>tbody>tr>td:first-of-type {
+	border-left: 0px;
+}
+
+.panel-table .panel-body .table-bordered>tbody>tr:first-of-type>td {
+	border-bottom: 0px;
+}
+
+.panel-table .panel-body .table-bordered>thead>tr:first-of-type>th {
+	border-top: 0px;
+}
+
+.panel-table .panel-footer .pagination {
+	margin: 0;
+}
+
+/*
+used to vertically center elements, may need modification if you're not using default sizes.
+*/
+.panel-table .panel-footer .col {
+	line-height: 34px;
+	height: 34px;
+}
+
+.panel-table .panel-heading .col h3 {
+	line-height: 30px;
+	height: 30px;
+}
+
+.panel-table .panel-body .table-bordered>tbody>tr>td {
+	line-height: 34px;
+}
+</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="panel-group" style="margin-top: 40px">
+			<div class="panel panel-primary">
+				<nav class="navbar navbar-inverse">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a class="navbar-brand" href="#"><strong
+								th:utext="${userName}"></strong></a>
+						</div>
+						<ul class="nav navbar-nav pull-right">
+							<li><a class="navbar-brand" th:href="@{/logout}"> <img
+									th:src="@{/images/logout.png}" alt="logo"
+									style="width: 30px; height: 30px;">
+
+							</a></li>
+						</ul>
+					</div>
+				</nav>
+				<br></br> <br></br>
+
+				<div class="container" align="center">
+					<button type="button" class="btn btn-primary"
+						onclick="window.location.href='/admin/addJobView'">Add
+						Jobs</button>
+					<button type="button" class="btn btn-warning" data-toggle="modal"
+						data-target="#myModal">Add Moderator</button>
+					<button type="button" class="btn btn-info"
+						onclick="window.location.href='/admin/jobAppliedView'">View
+						Applied Jobs</button>
+				</div>
+				<br />
+				<p th:text="${message}"
+					style="color: green; text-align: center; font-weight: bold;">
+				<p>
+
+
+					<br />
+				<div class="container">
+					<div class="row">
+
+						<div class="col-md-10 col-md-offset-1">
+
+							<div class="panel panel-default panel-table">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col col-xs-6">
+											<h3 class="panel-title">Your Upload Jobs</h3>
+										</div>
+										<div class="col col-xs-6 text-right">
+											<a class="btn btn-sm btn-primary btn-create"
+												th:href="@{/admin/addJobView}">Create New</a>
+										</div>
+									</div>
+								</div>
+								<div class="panel-body table-responsive">
+									<table class="table table-striped table-bordered table-list">
+										<thead>
+											<tr>
+												<th class="hidden-xs">JobID</th>
+												<th>Technology</th>
+												<th>Location</th>
+												<th>Company</th>
+												<th>Designation</th>
+												<th>ProjectName</th>
+												<th>Client</th>
+												<th>ProjectIG</th>
+												<th>TeamSize</th>
+												<th>Description</th>
+												<th>PostDate</th>
+												<th>PostedBy</th>
+												<th><em class="fa fa-cog"></em></th>
+											</tr>
+										</thead>
+										<tbody id="myTable">
+
+											<tr th:each="job : ${jobs}">
+												<td th:text="${job.jobID}" class="hidden-xs">1</td>
+												<td th:text="${job.technology}"></td>
+												<td th:text="${job.location}"></td>
+												<td th:text="${job.company}"></td>
+												<td th:text="${job.designation}"></td>
+												<td th:text="${job.projectName}"></td>
+												<td th:text="${job.client}"></td>
+												<td th:text="${job.projectIG}"></td>
+												<td th:text="${job.teamSize}"></td>
+												<td th:text="${job.description}"></td>
+												<td th:text="${job.postDate}"></td>
+												<td th:text="${job.postedBy}"></td>
+												<td align="center"><a class="btn btn-default"
+													th:href="@{'/admin/updatePostView?id=' + ${job.jobID}}"><em
+														class="fa fa-pencil"></em></a> <a class="btn btn-danger"
+													th:href="@{'/admin/deletePost?id=' + ${job.jobID}}"><em
+														class="fa fa-trash"></em></a></td>
+											</tr>
+
+										</tbody>
+									</table>
+
+								</div>
+								<div class="panel-footer">
+									<div class="row">
+
+										<div class="col col-xs-4">Page 1 of 5</div>
+										<div class="col col-xs-8">
+											<ul class="pagination hidden-xs pull-right" id="myPager">
+											</ul>
+											<ul class="pagination visible-xs pull-right">
+												<li><a href="#">«</a></li>
+												<li><a href="#">»</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<p class="admin-message-text text-center"
+					th:utext="${accessMessage}"></p>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container">
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Please complete Registration process</h4>
+					</div>
+					<div class="modal-body" align="center">
+						<div class="row" align="center">
+							<div class="col-md-6 col-md-offset-3" align="center">
+								<form class="register" action="/admin/addModerator"
+									method="post">
+									<p align="center" style="color: red;" th:text="${ErrorMessage}"></p>
+									<input type="text" class="register-input"
+										placeholder="First Name" name="name" /> <input type="text"
+										class="register-input" placeholder="Last Name" name="lastName" />
+									<input type="email" class="register-input"
+										placeholder="Email address" name="email" /> <input
+										type="text" class="register-input" placeholder="Mobile Number"
+										name="mobile" /> <input type="text" class="register-input"
+										th:value="moderator" name="password" readonly="readonly" />
+									<div class="g-recaptcha"
+										data-sitekey="6LduSB4UAAAAAGntBkhIOPfbx_T2HDrHPk8qMgJi"></div>
+									<input type="submit" value="Add Moderator"
+										class="register-button" />
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script th:inline="javascript" type="text/javascript">
+		$.fn.pageMe = function(opts) {
+			var $this = this, defaults = {
+				perPage : 7,
+				showPrevNext : false,
+				hidePageNumbers : false
+			}, settings = $.extend(defaults, opts);
+
+			var listElement = $this;
+			var perPage = settings.perPage;
+			var children = listElement.children();
+			var pager = $('.pager');
+
+			if (typeof settings.childSelector != "undefined") {
+				children = listElement.find(settings.childSelector);
+			}
+
+			if (typeof settings.pagerSelector != "undefined") {
+				pager = $(settings.pagerSelector);
+			}
+
+			var numItems = children.size();
+			var numPages = Math.ceil(numItems / perPage);
+
+			pager.data("curr", 0);
+
+			if (settings.showPrevNext) {
+				$('<li><a href="#" class="prev_link">«</a></li>').appendTo(
+						pager);
+			}
+
+			var curr = 0;
+			while (numPages > curr && (settings.hidePageNumbers == false)) {
+				$(
+						'<li><a href="#" class="page_link">' + (curr + 1)
+								+ '</a></li>').appendTo(pager);
+				curr++;
+			}
+
+			if (settings.showPrevNext) {
+				$('<li><a href="#" class="next_link">»</a></li>').appendTo(
+						pager);
+			}
+
+			pager.find('.page_link:first').addClass('active');
+			pager.find('.prev_link').hide();
+			if (numPages <= 1) {
+				pager.find('.next_link').hide();
+			}
+			pager.children().eq(1).addClass("active");
+
+			children.hide();
+			children.slice(0, perPage).show();
+
+			pager.find('li .page_link').click(function() {
+				var clickedPage = $(this).html().valueOf() - 1;
+				goTo(clickedPage, perPage);
+				return false;
+			});
+			pager.find('li .prev_link').click(function() {
+				previous();
+				return false;
+			});
+			pager.find('li .next_link').click(function() {
+				next();
+				return false;
+			});
+
+			function previous() {
+				var goToPage = parseInt(pager.data("curr")) - 1;
+				goTo(goToPage);
+			}
+
+			function next() {
+				goToPage = parseInt(pager.data("curr")) + 1;
+				goTo(goToPage);
+			}
+
+			function goTo(page) {
+				var startAt = page * perPage, endOn = startAt + perPage;
+
+				children.css('display', 'none').slice(startAt, endOn).show();
+
+				if (page >= 1) {
+					pager.find('.prev_link').show();
+				} else {
+					pager.find('.prev_link').hide();
+				}
+
+				if (page < (numPages - 1)) {
+					pager.find('.next_link').show();
+				} else {
+					pager.find('.next_link').hide();
+				}
+
+				pager.data("curr", page);
+				pager.children().removeClass("active");
+				pager.children().eq(page + 1).addClass("active");
+
+			}
+		};
+
+		$(document).ready(function() {
+
+			$('#myTable').pageMe({
+				pagerSelector : '#myPager',
+				showPrevNext : true,
+				hidePageNumbers : false,
+				perPage : 4
+			});
+
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>User Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+th {
+	text-align: center;
+	font-weight: bold;
+}
+
+/* .row {
+	margin-top: 40px;
+	padding: 0 10px;
+} */
+.row {
+	margin-right: -139px;
+	margin-left: 130px;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+.panel-heading div {
+	margin-top: -18px;
+	font-size: 15px;
+}
+
+.panel-heading div span {
+	margin-left: 5px;
+}
+
+.panel-body {
+	display: none;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+
+		<form th:action="@{/logout}" method="get">
+			<button class="btn btn-md btn-danger btn-block" name="registration"
+				type="Submit">Logout</button>
+		</form>
+
+		<div class="panel-group" style="margin-top: 40px">
+			<div class="panel panel-primary">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6" style="width: 70%;">
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									<h3 class="panel-title" th:utext="${userName}"></h3>
+									<div class="pull-right">
+										<span class="clickable filter" data-toggle="tooltip"
+											title="Toggle table filter" data-container="body"> <i
+											class="glyphicon glyphicon-filter"></i>
+										</span>
+									</div>
+								</div>
+								<div class="panel-body">
+									<input type="text" class="form-control" id="dev-table-filter"
+										data-action="filter" data-filters="#dev-table"
+										placeholder="Filter Developers" />
+								</div>
+								<table class="table table-hover" id="dev-table" border="1">
+									<thead>
+										<tr>
+											<th>JobID</th>
+											<th>Technology</th>
+											<th>Location</th>
+											<th>Company</th>
+											<th>Designation</th>
+											<th>ProjectName</th>
+											<th>Client</th>
+											<th>ProjectIG</th>
+											<th>TeamSize</th>
+											<th>Description</th>
+											<th>PostDate</th>
+											<th>PostedBy</th>
+											<th><em class="fa fa-cog"></em></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="job : ${jobs}">
+											<td th:text="${job.jobID}" class="hidden-xs">1</td>
+											<td th:text="${job.technology}"></td>
+											<td th:text="${job.location}"></td>
+											<td th:text="${job.company}"></td>
+											<td th:text="${job.designation}"></td>
+											<td th:text="${job.projectName}"></td>
+											<td th:text="${job.client}"></td>
+											<td th:text="${job.projectIG}"></td>
+											<td th:text="${job.teamSize}"></td>
+											<td th:text="${job.description}"></td>
+											<td th:text="${job.postDate}"></td>
+											<td th:text="${job.postedBy}"></td>
+											<td align="center"><a class="btn btn-default"
+												th:href="@{'/admin/updatePostView?id=' + ${job.jobID}}"><em
+													class="fa fa-pencil"></em></a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<p class="admin-message-text text-center"
+					th:utext="${accessMessage}"></p>
+			</div>
+		</div>
+
+	</div>
+	<script th:inline="javascript">
+		(function() {
+			'use strict';
+			var $ = jQuery;
+			$.fn
+					.extend({
+						filterTable : function() {
+							return this
+									.each(function() {
+										$(this)
+												.on(
+														'keyup',
+														function(e) {
+															$(
+																	'.filterTable_no_results')
+																	.remove();
+															var $this = $(this), search = $this
+																	.val()
+																	.toLowerCase(), target = $this
+																	.attr('data-filters'), $target = $(target), $rows = $target
+																	.find('tbody tr');
+
+															if (search == '') {
+																$rows.show();
+															} else {
+																$rows
+																		.each(function() {
+																			var $this = $(this);
+																			$this
+																					.text()
+																					.toLowerCase()
+																					.indexOf(
+																							search) === -1 ? $this
+																					.hide()
+																					: $this
+																							.show();
+																		})
+																if ($target
+																		.find(
+																				'tbody tr:visible')
+																		.size() === 0) {
+																	var col_count = $target
+																			.find(
+																					'tr')
+																			.first()
+																			.find(
+																					'td')
+																			.size();
+																	var no_results = $('<tr class="filterTable_no_results"><td colspan="'+col_count+'">No results found</td></tr>')
+																	$target
+																			.find(
+																					'tbody')
+																			.append(
+																					no_results);
+																}
+															}
+														});
+									});
+						}
+					});
+			$('[data-action="filter"]').filterTable();
+		})(jQuery);
+
+		$(function() {
+			// attach table filter plugin to inputs
+			$('[data-action="filter"]').filterTable();
+
+			$('.container').on('click', '.panel-heading span.filter',
+					function(e) {
+						var $this = $(this), $panel = $this.parents('.panel');
+
+						$panel.find('.panel-body').slideToggle();
+						if ($this.css('display') != 'none') {
+							$panel.find('.panel-body input').focus();
+						}
+					});
+			$('[data-toggle="tooltip"]').tooltip();
+		})
+	</script>
+</body>
+</html>
